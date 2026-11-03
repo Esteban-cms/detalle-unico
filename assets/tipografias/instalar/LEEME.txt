@@ -1,0 +1,21 @@
+TIPOGRAFÍAS DE LA TIENDA (para instalar en Windows)
+==================================================
+Para que el texto editable salga igual en su programa del láser:
+1. Haga doble clic en el archivo .ttf de la letra que pidió el cliente.
+2. Presione "Instalar".
+3. Cierre y vuelva a abrir su programa del láser.
+
+Qué archivo es cada letra (como aparece en la tienda):
+  Cursiva elegante ........ great-vibes.ttf
+  Cursiva manuscrita ...... dancing-script.ttf
+  Caligrafía .............. pinyon-script.ttf
+  Mayúsculas clásicas ..... cinzel.ttf
+  Mayúsculas modernas ..... bebas-neue.ttf
+  Infantil ................ fredoka.ttf
+  Redondeada .............. nunito.ttf
+  Minimalista ............. quicksand.ttf
+  (Pacifico y Playfair Display se usan en la página y la imagen del pedido.)
+
+Son tipografías de Google Fonts con licencia libre (OFL): se pueden instalar y usar para grabar.
+Consejo: si no quiere instalar nada, en el modo taller elija "Nombre en trazados": el nombre sale
+como dibujo con la letra exacta y no depende de lo que tenga instalado.
