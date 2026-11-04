@@ -14,6 +14,8 @@ const PRECIOS = {
   urlPublica: "",
   // El modo taller solo se habilita al abrir la copia local en localhost.
   whatsappSaludo: "Hola, quiero hacer el siguiente pedido:",
+  // Mensaje que ve el cliente al enviar su pedido (edítelo a su gusto):
+  gracias: { titulo: "¡Gracias por tu compra! 🎉", texto: "Tu pedido quedó reservado. Si necesitas algún cambio, escríbeme y con gusto te atiendo." },
 
   cuaderno: { base: 18000 },
   agenda:   { base: 35000 },

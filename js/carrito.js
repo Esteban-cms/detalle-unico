@@ -88,22 +88,27 @@ const Carrito = (() => {
       if (b.dataset.pl) Placa.descargar(Placa.estDeItem(it), "trazado", false);
       if (b.dataset.lv) Llavero.descargarItem(it, 30);
     };
-    $("#btn-finalizar").onclick = () => { pedidoNum = PedidoImg.numero(); pedidoLink = Pedidos.enlace(pedidoNum, items); $("#wa-texto").value = mensaje(); $("#wa-modal").classList.add("abierto"); };
+    const gracias = () => {                                          // mensaje corto de agradecimiento al enviar el pedido
+      const g = PRECIOS.gracias || {}, box = $("#wa-gracias");
+      box.innerHTML = `<b>${esc(g.titulo || "¡Gracias por tu compra! 🎉")}</b><span>${esc(g.texto || "Tu pedido quedó reservado. Si necesitas algún cambio, escríbeme y con gusto te atiendo.")}</span>`;
+      box.hidden = false; $("#wa-modal .modal-box").scrollTo({ top:0, behavior:"smooth" });
+    };
+    $("#btn-finalizar").onclick = () => { $("#wa-gracias").hidden = true; $("#wa-aviso").hidden = true; pedidoNum = PedidoImg.numero(); pedidoLink = Pedidos.enlace(pedidoNum, items); $("#wa-texto").value = mensaje(); $("#wa-modal").classList.add("abierto"); };
     $("#wa-cancelar").onclick = () => $("#wa-modal").classList.remove("abierto");
     /* La imagen del pedido se ENVÍA por WhatsApp (no es para descargar):
        1) celular: abre «Compartir» con la imagen lista para elegir WhatsApp; 2) PC: copia la imagen para pegarla (Ctrl+V) en el chat;
        3) solo si el navegador no permite ninguna de las dos, la guarda como archivo. */
     $("#wa-img").onclick = async e => {
-      const b = e.currentTarget, t = b.textContent, av = $("#wa-aviso"); b.disabled = true; b.textContent = "Creando imagen…"; av.hidden = true;
+      const b = e.currentTarget, t = b.textContent, av = $("#wa-aviso"); b.disabled = true; b.textContent = "Preparando…"; av.hidden = true;
       const n = (PRECIOS.whatsappNumero || "").replace(/\D/g, "");
       try {
         const blob = await PedidoImg.generar(items, totales(), pedidoNum, lineas, pedidoLink), f = new File([blob], `pedido-${pedidoNum}.png`, { type:"image/png" });
-        if (navigator.canShare && navigator.canShare({ files:[f] })) { try { await navigator.share({ files:[f], text:`Pedido #${pedidoNum}` }); return; } catch (er) { if (er.name === "AbortError") return; } }
+        if (navigator.canShare && navigator.canShare({ files:[f] })) { try { await navigator.share({ files:[f], text:`Pedido #${pedidoNum}` }); gracias(); return; } catch (er) { if (er.name === "AbortError") return; } }
         try {
           if (!(navigator.clipboard && window.ClipboardItem)) throw new Error("sin portapapeles");
           await navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
           av.textContent = "✓ Imagen copiada. En el chat de WhatsApp pégala con Ctrl+V (o mantén pulsado y elige Pegar) y envíala."; av.hidden = false;
-          window.open(`https://wa.me/${n}`, "_blank", "noopener"); return;
+          window.open(`https://wa.me/${n}`, "_blank", "noopener"); gracias(); return;
         } catch (er) {}
         const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = f.name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 3000);
         av.textContent = "Tu navegador no permite enviarla directo: se guardó la imagen. Adjúntala en el chat de WhatsApp."; av.hidden = false;
@@ -112,7 +117,7 @@ const Carrito = (() => {
     $("#wa-copiar").onclick = () => navigator.clipboard?.writeText($("#wa-texto").value);
     $("#wa-enviar").onclick = () => {
       const n = (PRECIOS.whatsappNumero || "").replace(/\D/g, "");
-      window.open(`https://wa.me/${n}?text=${encodeURIComponent($("#wa-texto").value)}`, "_blank", "noopener");
+      window.open(`https://wa.me/${n}?text=${encodeURIComponent($("#wa-texto").value)}`, "_blank", "noopener"); gracias();
     };
     render();
   }
