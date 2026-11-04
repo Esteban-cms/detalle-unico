@@ -298,3 +298,7 @@ img[data-zoom]{cursor:zoom-in}
   .vit-gal img{flex:none;max-width:none;width:100%}
 }
 @media(max-width:700px){.vit-card{padding:12px 6px}.vit-card b{font-size:.95rem}.vit-pr{font-size:1rem}.vit-card em{font-size:.82rem;padding:7px 10px}}
+
+/* Mensaje de agradecimiento al enviar el pedido */
+.gracias{display:grid;gap:2px;text-align:center;background:#eaf6ee;border:1px solid #b9dcc6;color:#1d5a37;border-radius:12px;padding:10px 12px;margin:0 0 10px}
+.gracias b{font:400 1.1rem 'f-playfair-display',Georgia,serif}.gracias span{font-size:.9rem;line-height:1.35}
