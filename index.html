@@ -152,11 +152,12 @@
   <button id="cart-seguir" class="btn sec">Continuar comprando</button>
   <button id="btn-finalizar" class="btn wa">FINALIZAR PEDIDO POR WHATSAPP</button>
 </aside>
-<div id="wa-modal" class="modal"><div class="modal-box"><h3>Revisa tu mensaje</h3>
-  <p>Este mensaje está protegido contra cambios accidentales. Se abrirá WhatsApp y tú decides si lo envías. También puedes enviar la <b>imagen del pedido</b> por WhatsApp.</p>
+<div id="wa-modal" class="modal"><div class="modal-box"><h3>Revisa tu pedido</h3>
+  <div id="wa-gracias" class="gracias" role="status" hidden></div>
+  <p>Pulsa <b>Enviar pedido</b> para mandárnoslo por WhatsApp. Tú decides si lo envías.</p>
   <p id="wa-aviso" class="nota" hidden></p>
   <textarea id="wa-texto" rows="14" readonly aria-label="Resumen del pedido, solo lectura"></textarea>
-  <div class="acciones"><button id="wa-cancelar" class="btn sec">Volver</button><button id="wa-img" class="btn sec">📲 Enviar imagen por WhatsApp</button><button id="wa-copiar" class="btn sec">Copiar</button><button id="wa-enviar" class="btn wa">Abrir WhatsApp</button></div></div></div>
+  <div class="acciones"><button id="wa-cancelar" class="btn sec">Volver</button><button id="wa-copiar" class="btn sec">Copiar</button><button id="wa-enviar" class="btn sec">Solo texto</button><button id="wa-img" class="btn wa">📲 Enviar pedido</button></div></div></div>
 
 <script src="js/opentype.min.js"></script>
 <script src="js/qrcode.js"></script>
